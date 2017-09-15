@@ -1,0 +1,7 @@
+public class CustomReportController {
+	
+    @AuraEnabled
+    public static String getFullReport(ID id){
+        return JSON.serialize(ReportReader.getReportData(id));
+    }
+}

@@ -1,0 +1,24 @@
+public class FullReportData {
+
+    public List<ColumnInfo> columnsData;
+    public List<Map<String, CellInfo>> rowsData;
+    
+    public FullReportData(){}
+    
+    public class ColumnInfo {
+        public String label;
+        public String key;
+        public String type;
+        
+        public ColumnInfo(){}
+        public ColumnInfo(String label, String key, String type){
+            this.label = label;
+            this.key = key;
+            this.type = type;
+        }
+    }
+    
+    public class CellInfo {
+        public String label;
+    }
+}
