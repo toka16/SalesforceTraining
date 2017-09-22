@@ -2,8 +2,8 @@
 	doInit : function(component, event, helper) {
 		var self = this;
         helper.getReportList(component, function(list){
-            if (list.length > 1){
-                component.set("v.reportId", list[1].Id);
+            if (list.length > 0){
+                component.set("v.reportId", list[0].Id);
                 helper.getReportResponse(component, component.get("v.reportId"));
             }
         });
