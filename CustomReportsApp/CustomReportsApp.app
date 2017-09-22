@@ -1,3 +1,3 @@
 <aura:application extends="force:slds">
-    <c:CustomReport />
+    <c:MyReport />
 </aura:application>

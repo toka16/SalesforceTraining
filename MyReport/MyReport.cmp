@@ -1,0 +1,54 @@
+<aura:component controller="CustomReportController">
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    
+    <aura:attribute name="reportResponse" type="Object"/>
+    <aura:attribute name="reportId" type="ID" />
+    <aura:attribute name="reportList" type="Report[]" />
+    <aura:attribute name="columns" type="Object[]" />
+    <aura:attribute name="data" type="Object[]" />
+   
+    <div>
+        <lightning:select name="selectItem" label="Select an item" onchange="{!c.reportChanged}" value="{!v.reportId}">
+            <aura:iteration items="{!v.reportList}" var="rep">
+            	<option value="{! rep.Id}">{!rep.Name}</option>
+            </aura:iteration>
+        </lightning:select>
+
+		<div>
+        	<aura:iteration items="{!v.columns}" var="column" indexVar="index">
+                <div class="slds-form-element">
+                  <div class="slds-form-element__control">
+                    <span class="slds-checkbox">
+                      <input type="checkbox" name="options" id="{!index}" checked="checked" onchange="{!c.visibilityChanged}"/>
+                      <label class="slds-checkbox__label" for="{!index}">
+                        <span class="slds-checkbox_faux"></span>
+                        <span class="slds-form-element__label">{!column.label}</span>
+                      </label>
+                    </span>
+                  </div>
+                </div>
+            </aura:iteration>
+        </div>
+        <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+            <thead>
+                <tr class="slds-text-title_caps">
+                    <aura:iteration var="column" items="{! v.columns}" indexVar="index">
+                        <th scope="col" class="{!v.reportId+'-column-'+index}">
+                            <div class="slds-truncate" title="{!column.label}">{!column.label}</div>
+                        </th>
+                    </aura:iteration>
+                </tr>
+            </thead>
+            <tbody>
+                <aura:iteration var="row" items="{!v.data}">
+                    <tr>
+                        <aura:iteration var="cell" items="{!row}" indexVar="index">
+                            <td  class="{!v.reportId+'-column-'+index}">{! cell.label}</td>
+                        </aura:iteration>
+                    </tr>
+                </aura:iteration>
+            </tbody>
+        </table>
+    </div>
+	
+</aura:component>

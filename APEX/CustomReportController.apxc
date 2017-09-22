@@ -4,4 +4,14 @@ public class CustomReportController {
     public static String getFullReport(ID id){
         return JSON.serialize(ReportReader.getReportData(id));
     }
+    
+    @AuraEnabled
+    public static String runReport(ID id){
+        return JSON.serialize(Reports.ReportManager.runReport(id, true));
+    }
+    
+    @AuraEnabled
+    public static Report[] listReports(){
+        return [select ID, Name from Report];
+    }
 }
